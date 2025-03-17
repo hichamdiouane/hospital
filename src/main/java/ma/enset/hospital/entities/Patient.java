@@ -17,4 +17,5 @@ public class Patient {
     private Date dateNaissance;
     private Boolean malade;
     private int score;
+
 }
