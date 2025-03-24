@@ -1,5 +1,6 @@
 package ma.enset.hospital;
 
+import lombok.AllArgsConstructor;
 import ma.enset.hospital.entities.Patient;
 import ma.enset.hospital.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,13 +8,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
-@SpringBootApplication
+@SpringBootApplication @AllArgsConstructor
 public class HospitalApplication implements CommandLineRunner {
 
-	@Autowired
 	private PatientRepository patientRepository;
 
 	public static void main(String[] args) {
@@ -22,8 +23,8 @@ public class HospitalApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		patientRepository.save(new Patient(null, "Hassan", new Date(), false, 12));
-		patientRepository.save(new Patient(null, "Khalid", new Date(), true, 34));
-		patientRepository.save(new Patient(null, "Omar", new Date(), false, 56));
+		patientRepository.save(new Patient(null, "Hassan", LocalDate.now(), false, 12));
+		patientRepository.save(new Patient(null, "Khalid", LocalDate.now(), true, 34));
+		patientRepository.save(new Patient(null, "Hicham", LocalDate.now(), false, 56));
 	}
 }
