@@ -18,7 +18,7 @@
                 Liste des patients
             </div>
             <div class="card-body">
-                <form method="get" th:action="@{/user/index}">
+                <form method="get" th:action="@{/index}">
                     <label>Keyword</label>
                     <input type="text" name="keyword" th:value="${keyword}">
                     <button class="btn btn-outline-info">Search</button>
@@ -33,7 +33,6 @@
                         <th>Score</th>
                         <th>malade</th>
                         <th></th>
-                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -44,13 +43,16 @@
                         <td th:text="${p.dateNaissance}"></td>
                         <td th:text="${p.score}"></td>
                         <td th:text="${p.malade}"></td>
+                        <td>
+                            <a onclick="return confirm('est ce que vous etes sur de supprimer ?')" class="btn btn-danger" th:href="@{/deletePatient(id=${p.id},page=${currentPage},keyword=${keyword})}">Delete</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
                 <ul class="nav nav-pills">
                     <li th:each="page,status : ${pages}">
                         <a th:class="${status.index==currentPage ?'btn btn-info m-1':'btn btn-outline-info m-1'}"
-                           th:href="@{/user/index(page=${status.index},keyword=${keyword})}" th:text="${status.index}">
+                           th:href="@{/index(page=${status.index},keyword=${keyword})}" th:text="${status.index}">
                         </a>
                     </li>
                 </ul>
